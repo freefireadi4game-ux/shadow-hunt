@@ -15,6 +15,13 @@
       "when": 1793193464455,
       "tag": "0001_shadow_hunt_core_a",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1793193487931,
+      "tag": "0002_shadow_hunt_core_b",
+      "breakpoints": true
     }
   ]
 }

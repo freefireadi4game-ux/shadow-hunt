@@ -357,8 +357,32 @@ export type Database = {
       hn_settings: { Args: { _s: Json }; Returns: Json }
       join_match: { Args: { _code: string }; Returns: string }
       leave_match: { Args: { _match: string }; Returns: undefined }
+      randomize_roles: { Args: { _match: string }; Returns: undefined }
+      set_participant_role: {
+        Args: { _match: string; _role: string; _target: string }
+        Returns: undefined
+      }
       set_ready: {
         Args: { _match: string; _ready: boolean }
+        Returns: undefined
+      }
+      start_match: {
+        Args: { _center_lat: number; _center_lng: number; _match: string }
+        Returns: undefined
+      }
+      submit_position: {
+        Args: {
+          _accuracy: number
+          _heading: number
+          _lat: number
+          _lng: number
+          _match: string
+          _speed: number
+        }
+        Returns: string
+      }
+      update_match_settings: {
+        Args: { _match: string; _settings: Json }
         Returns: undefined
       }
     }
