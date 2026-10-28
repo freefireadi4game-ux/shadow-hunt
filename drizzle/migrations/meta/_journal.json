@@ -1,0 +1,41 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1793193339322,
+      "tag": "0000_shadow_hunt_schema",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1793193464455,
+      "tag": "0001_shadow_hunt_core_a",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1793193487931,
+      "tag": "0002_shadow_hunt_core_b",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1793193520429,
+      "tag": "0003_shadow_hunt_complete",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1793193540770,
+      "tag": "0004_shadow_hunt_tick",
+      "breakpoints": true
+    }
+  ]
+}
