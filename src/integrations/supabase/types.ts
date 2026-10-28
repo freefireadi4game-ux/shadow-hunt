@@ -349,6 +349,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      complete_match: {
+        Args: { _match: string; _winner: string }
+        Returns: undefined
+      }
       create_match: { Args: { _settings?: Json }; Returns: Json }
       haversine_m: {
         Args: { _lat1: number; _lat2: number; _lng1: number; _lng2: number }
