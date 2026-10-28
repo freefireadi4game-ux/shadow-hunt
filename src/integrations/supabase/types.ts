@@ -14,7 +14,336 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      capture_reports: {
+        Row: {
+          id: string
+          match_id: string
+          reported_at: string
+          reporter_id: string
+          resolved_at: string | null
+          resolved_by: string | null
+          status: string
+          target_id: string
+        }
+        Insert: {
+          id?: string
+          match_id: string
+          reported_at?: string
+          reporter_id: string
+          resolved_at?: string | null
+          resolved_by?: string | null
+          status?: string
+          target_id: string
+        }
+        Update: {
+          id?: string
+          match_id?: string
+          reported_at?: string
+          reporter_id?: string
+          resolved_at?: string | null
+          resolved_by?: string | null
+          status?: string
+          target_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "capture_reports_match_id_fkey"
+            columns: ["match_id"]
+            isOneToOne: false
+            referencedRelation: "matches"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      location_reveals: {
+        Row: {
+          accuracy_m: number | null
+          id: string
+          kind: string
+          lat: number | null
+          lng: number | null
+          match_id: string
+          revealed_at: string
+          user_id: string
+        }
+        Insert: {
+          accuracy_m?: number | null
+          id?: string
+          kind: string
+          lat?: number | null
+          lng?: number | null
+          match_id: string
+          revealed_at?: string
+          user_id: string
+        }
+        Update: {
+          accuracy_m?: number | null
+          id?: string
+          kind?: string
+          lat?: number | null
+          lng?: number | null
+          match_id?: string
+          revealed_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "location_reveals_match_id_fkey"
+            columns: ["match_id"]
+            isOneToOne: false
+            referencedRelation: "matches"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      match_events: {
+        Row: {
+          actor_id: string | null
+          created_at: string
+          event_type: string
+          id: number
+          match_id: string
+          payload: Json
+        }
+        Insert: {
+          actor_id?: string | null
+          created_at?: string
+          event_type: string
+          id?: never
+          match_id: string
+          payload?: Json
+        }
+        Update: {
+          actor_id?: string | null
+          created_at?: string
+          event_type?: string
+          id?: never
+          match_id?: string
+          payload?: Json
+        }
+        Relationships: [
+          {
+            foreignKeyName: "match_events_match_id_fkey"
+            columns: ["match_id"]
+            isOneToOne: false
+            referencedRelation: "matches"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      match_participants: {
+        Row: {
+          captures_made: number
+          id: string
+          joined_at: string
+          last_seen_at: string
+          match_id: string
+          ready: boolean
+          role: string | null
+          status: string
+          survival_seconds: number | null
+          user_id: string
+        }
+        Insert: {
+          captures_made?: number
+          id?: string
+          joined_at?: string
+          last_seen_at?: string
+          match_id: string
+          ready?: boolean
+          role?: string | null
+          status?: string
+          survival_seconds?: number | null
+          user_id: string
+        }
+        Update: {
+          captures_made?: number
+          id?: string
+          joined_at?: string
+          last_seen_at?: string
+          match_id?: string
+          ready?: boolean
+          role?: string | null
+          status?: string
+          survival_seconds?: number | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "match_participants_match_id_fkey"
+            columns: ["match_id"]
+            isOneToOne: false
+            referencedRelation: "matches"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      match_results: {
+        Row: {
+          completed_at: string
+          match_id: string
+          stats: Json
+          winner: string
+        }
+        Insert: {
+          completed_at?: string
+          match_id: string
+          stats?: Json
+          winner: string
+        }
+        Update: {
+          completed_at?: string
+          match_id?: string
+          stats?: Json
+          winner?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "match_results_match_id_fkey"
+            columns: ["match_id"]
+            isOneToOne: true
+            referencedRelation: "matches"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      matches: {
+        Row: {
+          code: string
+          completed_at: string | null
+          created_at: string
+          ends_at: string | null
+          grace_ends_at: string | null
+          host_id: string
+          hunter_last_reveal_at: string | null
+          id: string
+          paused_at: string | null
+          paused_total_seconds: number
+          settings: Json
+          shadow_last_ping_at: string | null
+          started_at: string | null
+          status: string
+          winner: string | null
+          zone_center_lat: number | null
+          zone_center_lng: number | null
+          zone_initial_radius_m: number | null
+          zone_last_shrink_at: string | null
+          zone_min_radius_m: number | null
+          zone_radius_m: number | null
+        }
+        Insert: {
+          code: string
+          completed_at?: string | null
+          created_at?: string
+          ends_at?: string | null
+          grace_ends_at?: string | null
+          host_id: string
+          hunter_last_reveal_at?: string | null
+          id?: string
+          paused_at?: string | null
+          paused_total_seconds?: number
+          settings?: Json
+          shadow_last_ping_at?: string | null
+          started_at?: string | null
+          status?: string
+          winner?: string | null
+          zone_center_lat?: number | null
+          zone_center_lng?: number | null
+          zone_initial_radius_m?: number | null
+          zone_last_shrink_at?: string | null
+          zone_min_radius_m?: number | null
+          zone_radius_m?: number | null
+        }
+        Update: {
+          code?: string
+          completed_at?: string | null
+          created_at?: string
+          ends_at?: string | null
+          grace_ends_at?: string | null
+          host_id?: string
+          hunter_last_reveal_at?: string | null
+          id?: string
+          paused_at?: string | null
+          paused_total_seconds?: number
+          settings?: Json
+          shadow_last_ping_at?: string | null
+          started_at?: string | null
+          status?: string
+          winner?: string | null
+          zone_center_lat?: number | null
+          zone_center_lng?: number | null
+          zone_initial_radius_m?: number | null
+          zone_last_shrink_at?: string | null
+          zone_min_radius_m?: number | null
+          zone_radius_m?: number | null
+        }
+        Relationships: []
+      }
+      player_positions: {
+        Row: {
+          accuracy_m: number | null
+          flag_reason: string | null
+          flagged: boolean
+          heading: number | null
+          lat: number
+          lng: number
+          match_id: string
+          recorded_at: string
+          speed_mps: number | null
+          user_id: string
+        }
+        Insert: {
+          accuracy_m?: number | null
+          flag_reason?: string | null
+          flagged?: boolean
+          heading?: number | null
+          lat: number
+          lng: number
+          match_id: string
+          recorded_at?: string
+          speed_mps?: number | null
+          user_id: string
+        }
+        Update: {
+          accuracy_m?: number | null
+          flag_reason?: string | null
+          flagged?: boolean
+          heading?: number | null
+          lat?: number
+          lng?: number
+          match_id?: string
+          recorded_at?: string
+          speed_mps?: number | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "player_positions_match_id_fkey"
+            columns: ["match_id"]
+            isOneToOne: false
+            referencedRelation: "matches"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          id: string
+          username: string
+        }
+        Insert: {
+          created_at?: string
+          id: string
+          username: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          username?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
