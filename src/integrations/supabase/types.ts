@@ -385,6 +385,7 @@ export type Database = {
         }
         Returns: string
       }
+      tick_match: { Args: { _match: string }; Returns: Json }
       update_match_settings: {
         Args: { _match: string; _settings: Json }
         Returns: undefined
