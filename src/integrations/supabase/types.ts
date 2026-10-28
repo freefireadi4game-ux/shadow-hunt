@@ -349,7 +349,18 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      create_match: { Args: { _settings?: Json }; Returns: Json }
+      haversine_m: {
+        Args: { _lat1: number; _lat2: number; _lng1: number; _lng2: number }
+        Returns: number
+      }
+      hn_settings: { Args: { _s: Json }; Returns: Json }
+      join_match: { Args: { _code: string }; Returns: string }
+      leave_match: { Args: { _match: string }; Returns: undefined }
+      set_ready: {
+        Args: { _match: string; _ready: boolean }
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never
