@@ -36,6 +36,13 @@
       "when": 1793193540770,
       "tag": "0004_shadow_hunt_tick",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1793280897471,
+      "tag": "0005_0005_shadow_hunt_capture_flow",
+      "breakpoints": true
     }
   ]
 }
