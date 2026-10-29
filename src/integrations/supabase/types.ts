@@ -133,6 +133,7 @@ export type Database = {
       }
       match_participants: {
         Row: {
+          captured_at: string | null
           captures_made: number
           id: string
           joined_at: string
@@ -145,6 +146,7 @@ export type Database = {
           user_id: string
         }
         Insert: {
+          captured_at?: string | null
           captures_made?: number
           id?: string
           joined_at?: string
@@ -157,6 +159,7 @@ export type Database = {
           user_id: string
         }
         Update: {
+          captured_at?: string | null
           captures_made?: number
           id?: string
           joined_at?: string
@@ -349,6 +352,11 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      _capture_confirm_row: {
+        Args: { r: Database["public"]["Tables"]["capture_reports"]["Row"] }
+        Returns: undefined
+      }
+      abort_match: { Args: { _match: string }; Returns: undefined }
       complete_match: {
         Args: { _match: string; _winner: string }
         Returns: undefined
@@ -361,7 +369,17 @@ export type Database = {
       hn_settings: { Args: { _s: Json }; Returns: Json }
       join_match: { Args: { _code: string }; Returns: string }
       leave_match: { Args: { _match: string }; Returns: undefined }
+      pause_match: { Args: { _match: string }; Returns: undefined }
       randomize_roles: { Args: { _match: string }; Returns: undefined }
+      report_capture: {
+        Args: { _match: string; _target: string }
+        Returns: string
+      }
+      resolve_capture: {
+        Args: { _confirm: boolean; _report: string }
+        Returns: undefined
+      }
+      resume_match: { Args: { _match: string }; Returns: undefined }
       set_participant_role: {
         Args: { _match: string; _role: string; _target: string }
         Returns: undefined
