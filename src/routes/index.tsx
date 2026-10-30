@@ -3,7 +3,13 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable";
 import { useGeolocation } from "@/hooks/useGeolocation";
-import { TacticalMap } from "@/components/game/TacticalMap";
+import { lazy, Suspense } from "react";
+
+const TacticalMap = lazy(() =>
+  import("@/components/game/TacticalMap").then((m) => ({
+    default: m.TacticalMap,
+  }))
+);
 import {
   HostSettingsPanel,
   DEFAULT_SETTINGS,
@@ -993,6 +999,13 @@ export default function ShadowHuntApp() {
 
       {/* Map radar */}
       <div className="flex-1 w-full min-h-[320px] relative">
+        <Suspense
+    fallback={
+      <div className="flex h-full min-h-[320px] items-center justify-center bg-zinc-950 border border-zinc-800 text-xs font-mono text-zinc-500 rounded-xl">
+        INITIALIZING TACTICAL RADAR...
+      </div>
+    }
+  >
         <TacticalMap
           userLat={geo.lat}
           userLng={geo.lng}
@@ -1006,6 +1019,7 @@ export default function ShadowHuntApp() {
           reveals={reveals}
           isOutsideZone={isOutsideZone}
         />
+          </Suspense>
       </div>
 
       {/* Capture confirmation modal */}
