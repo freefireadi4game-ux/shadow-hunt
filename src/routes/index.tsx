@@ -3,13 +3,9 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable";
 import { useGeolocation } from "@/hooks/useGeolocation";
-import { lazy, Suspense } from "react";
-
-const TacticalMap = lazy(() =>
-  import("@/components/game/TacticalMap").then((m) => ({
-    default: m.TacticalMap,
-  }))
-);
+import {
+  ClientOnlyTacticalMap as TacticalMap
+} from "@/components/game/ClientOnlyTacticalMap";
 import {
   HostSettingsPanel,
   DEFAULT_SETTINGS,
