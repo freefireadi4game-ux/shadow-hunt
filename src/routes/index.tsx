@@ -824,7 +824,7 @@ const geo = useGeolocation(
         />
 
         <div className="mt-auto space-y-3 pt-4">
-          {!isHost && (
+          
             <button
               onClick={handleToggleReady}
               className={`w-full py-3 font-bold rounded-xl text-sm uppercase tracking-wider transition ${
@@ -841,7 +841,7 @@ const geo = useGeolocation(
                 "Mark ready"
               )}
             </button>
-          )}
+          
           {isHost && (
             <>
               <button
