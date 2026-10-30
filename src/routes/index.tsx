@@ -693,7 +693,7 @@ export default function ShadowHuntApp() {
   // ============================================================
   
   // Wait for match data after creating or joining a room
-  if (matchId && !matchData) {
+  if (!matchData) {
     return (
       <div className="min-h-screen bg-zinc-950 text-emerald-400 flex flex-col items-center justify-center gap-3">
         <div className="w-8 h-8 border-2 border-emerald-400 border-t-transparent rounded-full animate-spin" />
