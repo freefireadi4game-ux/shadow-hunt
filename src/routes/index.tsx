@@ -762,7 +762,7 @@ const geo = useGeolocation(
                   {p.user_id === sessionUser.id && <span className="text-zinc-500"> (you)</span>}
                 </span>
                 <div className="flex items-center gap-1.5 shrink-0">
-                  {isHost && p.user_id !== matchData.host_id && (
+                  {isHost && (
                     <>
                       <button
                         onClick={() => handleAssignRole(p.user_id, "hunter")}
