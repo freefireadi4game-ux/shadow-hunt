@@ -81,9 +81,15 @@ export default function ShadowHuntApp() {
   const [serverOffset, setServerOffset] = useState(0);
   const [nowMs, setNowMs] = useState(() => Date.now());
 
-  const geo = useGeolocation(
-    Boolean(matchId && matchData && (matchData.status === "active" || matchData.status === "paused"))
-  );
+  
+const geo = useGeolocation(
+  Boolean(
+    matchId &&
+    matchData &&
+    ["lobby", "active", "paused"].includes(matchData.status)
+  )
+);
+  
 
   const roleRef = useRef<string | null>(null);
   roleRef.current = myParticipant?.role ?? null;
