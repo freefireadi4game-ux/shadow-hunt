@@ -128,7 +128,6 @@ export default function ShadowHuntApp() {
       .eq("match_id", id);
     if (parts) {
       setParticipants(parts);
-      setMyParticipant(parts.find((p) => p.user_id === supabase.auth.userId?.()) ?? null);
     } else if (partsErr) {
       console.error("participants fetch failed", partsErr);
     }
@@ -302,7 +301,7 @@ export default function ShadowHuntApp() {
   const handleCreateMatch = async (settingsOverride?: Record<string, unknown>) => {
     try {
       const { data, error } = await supabase.rpc("create_match", {
-        _settings: settingsOverride ?? { ...DEFAULT_SETTINGS },
+        _settings: (settingsOverride ?? { ...DEFAULT_SETTINGS }) as any,
       });
       if (error) throw error;
       const res = data as { id: string; code: string };
@@ -388,7 +387,10 @@ export default function ShadowHuntApp() {
     if (!matchId) return;
     setSavingSettings(true);
     try {
-      const { error } = await supabase.rpc("update_match_settings", { _match: matchId, _settings: patch });
+      const { error } = await supabase.rpc("update_match_settings", {
+        _match: matchId,
+        _settings: patch as any,
+      });
       if (error) throw error;
       await refreshMatch(matchId);
       notify("Settings updated.");
