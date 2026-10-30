@@ -132,7 +132,9 @@ const geo = useGeolocation(
 
     const { data: parts, error: partsErr } = await supabase
       .from("match_participants")
-      .select("*, profiles:user_id(username)")
+      
+.select("*, profiles!fk_participants_profile(username)")
+      
       .eq("match_id", id);
     if (parts) {
       setParticipants(parts);
